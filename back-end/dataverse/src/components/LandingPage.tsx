@@ -24,7 +24,7 @@ export function LandingPage({
                 FGCU Art Gallery
               </h1>
               <p className="text-muted-foreground mt-1">
-                Digital Collection
+                Provided by the FGCU Library
               </p>
             </div>
           </div>
