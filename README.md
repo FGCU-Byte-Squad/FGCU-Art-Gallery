@@ -23,9 +23,14 @@ A class project intended for potential use by the FGCU Library to display artwor
 ## Installation Guide
 
 To install React, please refer to this website: [React](https://react.dev/learn/creating-a-react-app) </br>
-To install the Dataverse database, please refer to this website: [Dataverse](https://guides.dataverse.org/en/latest/installation/index.html)
+To install the Dataverse database, please refer to this website: [Dataverse](https://guides.dataverse.org/en/latest/installation/index.html) </br>
+To install Dataverse using Docker, please refer to this website: [Dataverse Docker Download](https://guides.dataverse.org/en/latest/container/running/index.html)
 
-Please note that there are some vague instructions within the Dataverse Installation Guide and certain dependencies and/or files will have to be downloaded in order to proceed with the installation. A quick guide for how to deal with these ambiguous steps are:
+Please note that if you are an FGCU student, it is easier to sign up for access to [FGCU's Dataverse](https://dataverse.fgcu.edu) than using any of the above methods. To do so, click on "Log In" in the upper-right corner of the page. Then under "Other Options," click on "Your Institution," which will use your FGCU Student Email to create your account. Accept the Terms & Conditions, then click on "Create Account." Under your account settings, click on a tab called "API Token," then click on the "Create Token" button to create an API Token. You can use your API Token with the Base URL (https://dataverse.fgcu.edu) and the Subtree "art" (where FGCU stores all its art in Dataverse), and connect these components to any front-end project you have.
+
+If signing up for access to FGCU's Dataverse - for any reason - is not possible or you are not an FGCU student, please try to configure Dataverse using Docker as it is the second-easiest way to do so. If that does not work, please refer to the next paragraph.
+
+If no other method of configuration worked or you decide to procede with the normal way of configuring Dataverse, please note that there are some vague instructions within the Dataverse Installation Guide and certain dependencies and/or files will have to be downloaded in order to proceed with the installation. A quick guide for how to deal with these ambiguous steps are:
 
 - If you need to change any permissions or move files from user to user, you need to do so in the root or host user (ie: your_host_name@ip_address)
 - If you need to create, edit, or delete anything pertaining to Payara, you need to do so in the dataverse user (ie: dataverse@ip_address)
