@@ -16,7 +16,7 @@ A class project intended for potential use by the FGCU Library to display artwor
 </br>
 
 ## AI Tools Used
-- v0.app (to create a prototype)
+- Figma Make (to create a prototype)
 
 </br>
 
