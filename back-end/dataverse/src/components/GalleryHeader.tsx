@@ -8,8 +8,8 @@ export function GalleryHeader() {
             <div className="w-1 h-12 bg-[#007749]" />
           </div>
           <div>
-            <h1 className="tracking-tight">FGCU Dataverse</h1>
-            <p className="text-muted-foreground mt-1">Art Collection</p>
+            <h1 className="tracking-tight">FGCU Art Gallery</h1>
+            <p className="text-muted-foreground mt-1">Provided by the FGCU Library</p>
           </div>
         </div>
       </div>
