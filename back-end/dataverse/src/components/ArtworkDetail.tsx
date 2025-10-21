@@ -27,24 +27,11 @@ interface ArtworkDetailProps {
     termsOfAccess?: string;
     fileAccessRequest?: boolean;
     metadataLanguage?: string;
-    alternativeTitle?: string;
-    alternativeURL?: string;
     publicationDate?: string;
-    citationRequirements?: string;
     depositor?: string;
     dateOfDeposit?: string;
     subjects?: string[];
     keywords?: string[];
-    topicClassification?: string[];
-    relatedPublications?: string[];
-    notes?: string;
-    language?: string[];
-    producer?: string[];
-    productionDate?: string;
-    productionPlace?: string;
-    contributor?: string[];
-    grantNumber?: string[];
-    distributor?: string[];
     authorName?: string;
     authorAffiliation?: string;
     authorIdentifierScheme?: string;
@@ -106,23 +93,42 @@ export function ArtworkDetail({ artwork, onClose }: ArtworkDetailProps) {
     if (artwork.keywords && artwork.keywords.length > 0) {
       citation += `Keyword: ${artwork.keywords.join(", ")}\n`;
     }
-    if (artwork.depositor) {
-      citation += `Depositor: ${artwork.depositor}\n`;
-    }
-    if (artwork.dateOfDeposit) {
-      citation += `Deposit Date: ${artwork.dateOfDeposit.split('T')[0]}\n`;
-    }
     
     return citation;
   };
 
   const copyCitation = async () => {
+    const citation = generateCitation();
+    
     try {
-      await navigator.clipboard.writeText(generateCitation());
+      // Try modern clipboard API first
+      await navigator.clipboard.writeText(citation);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Failed to copy citation:", err);
+      // Fallback to older method
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = citation;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        const successful = document.execCommand('copy');
+        textArea.remove();
+        
+        if (successful) {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } else {
+          console.error("Failed to copy citation using fallback method");
+        }
+      } catch (fallbackErr) {
+        console.error("Failed to copy citation:", fallbackErr);
+      }
     }
   };
 
@@ -138,13 +144,14 @@ export function ArtworkDetail({ artwork, onClose }: ArtworkDetailProps) {
             <X className="w-6 h-6" />
           </button>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="aspect-[3/4] bg-muted relative">
+          {/* Top section: Image and Basic Info */}
+          <div className="grid md:grid-cols-2 gap-12 mb-12 md:items-start">
+            <div className="bg-muted relative h-full">
               {artwork.imageUrl ? (
                 <ImageWithFallback
                   src={artwork.imageUrl}
                   alt={artwork.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0067B1]/10 to-[#007749]/10">
@@ -156,7 +163,7 @@ export function ArtworkDetail({ artwork, onClose }: ArtworkDetailProps) {
               )}
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 md:h-full">
               <div>
                 <h2 className="mb-2">{artwork.title}</h2>
                 {artwork.creator && (
@@ -200,9 +207,13 @@ export function ArtworkDetail({ artwork, onClose }: ArtworkDetailProps) {
                   </div>
                 )}
               </div>
+            </div>
+          </div>
 
-              {/* Citation Metadata Section */}
-              <div className="pt-6 mt-6 border-t border-border">
+          {/* Bottom section: Citation and Art Metadata Side by Side */}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Citation Metadata Section */}
+            <div className="border-t border-border pt-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-[#0067B1]">Citation Metadata</h3>
                   <Button
@@ -290,25 +301,13 @@ export function ArtworkDetail({ artwork, onClose }: ArtworkDetailProps) {
                       <p className="text-sm">{artwork.keywords.join(", ")}</p>
                     </div>
                   )}
-
-                  {artwork.depositor && (
-                    <div className="grid grid-cols-[180px_1fr] gap-4 py-2 border-b border-border/50">
-                      <p className="text-sm">Depositor</p>
-                      <p className="text-sm">{artwork.depositor}</p>
-                    </div>
-                  )}
-
-                  {artwork.dateOfDeposit && (
-                    <div className="grid grid-cols-[180px_1fr] gap-4 py-2 border-b border-border/50">
-                      <p className="text-sm">Deposit Date</p>
-                      <p className="text-sm">{artwork.dateOfDeposit.split('T')[0]}</p>
-                    </div>
-                  )}
                 </div>
+            </div>
 
-                {/* Art Metadata Section */}
-                <div className="mt-8 pt-6 border-t border-border">
-                  <h3 className="mb-4 text-[#007749]">Art Metadata</h3>
+            {/* Art Metadata Section */}
+            <div className="border-t border-border pt-6">
+              <div>
+                <h3 className="mb-4 text-[#007749]">Art Metadata</h3>
                   <div className="space-y-2">
                     {artwork.accessionNumber && (
                       <div className="grid grid-cols-[180px_1fr] gap-4 py-2 border-b border-border/50">
@@ -414,7 +413,6 @@ export function ArtworkDetail({ artwork, onClose }: ArtworkDetailProps) {
                       From FGCU Dataverse Collection
                     </p>
                   </div>
-                </div>
               </div>
             </div>
           </div>
