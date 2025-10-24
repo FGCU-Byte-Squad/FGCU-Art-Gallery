@@ -15,6 +15,11 @@ export function LandingPage({
       <header className="border-b border-border bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center gap-4">
+            <img
+              src="https://fgcucdn.fgcu.edu/advancement/universitymarketing/images/fgcu-logo-250h.jpg"
+              alt="FGCU Logo"
+              className="h-12 w-auto object-contain"
+            />
             <div className="flex gap-2">
               <div className="w-1 h-12 bg-[#0067B1]" />
               <div className="w-1 h-12 bg-[#007749]" />
