@@ -38,32 +38,47 @@ If no other method of configuration worked or you decide to procede with the nor
 - If you need to create, edit, or delete anything pertaining to PostgreSQL, you need to do so in the postgres user (ie: postgres@ip_address)
 - The PostgreSQL database and tables DO NOT and SHOULD NOT have to be created. The dvinstall.zip file (Dataverse Installation Guide linked above explains how to get this file) has script that will automatically create the database and the tables needed. You should, however, update the pg_hba.conf file (file path should be /var/lib/pgsql/16/data/pg_hba.conf) to include the name of the database and PostgreSQL user you would like the installer script to use.
 
-## Metadata Schema (docs/metadata/fgcuArtGallery.tsv)
+## Metadata Schema Usage in Prototype
 
-This file defines the metadata block used by the FGCU Art Gallery within the Dataverse backend.
+Our initial backend design included an ideal metadata schema for an art gallery, documented in [`docs/metadata/fgcuArtGallery.tsv`](./docs/metadata/fgcuArtGallery.tsv).
 
-Each dataset in Dataverse represents a single artwork and uses these fields to store descriptive information. These metadata fields enable faceted search (filtering) in the custom React gallery, allowing visitors to browse by Artist, Medium, or Year.
+However, through API exploration, we discovered that the live FGCU Dataverse server utilizes its own custom metadata block named `"art"`. The current React prototype code fetches and utilizes fields from both this live "art" block and the standard "Citation" block.
 
-| Field Name | Display Name | Description | Facetable |
-| :--- | :--- | :--- | :--- |
-| `artistName` | Artist | Primary creator/artist of the work. | **Yes** |
-| `workYear` | Year of Work | Year the artwork was completed (YYYY). | **Yes** |
-| `medium` | Medium | Materials or form used to create the work. | **Yes** |
-| `dimensions` | Dimensions | Physical size of the artwork. | No |
-| `copyrightNote` | Copyright / Rights Note | Any rights notes beyond the selected license. | No |
-| `curatorialNote` | Curatorial Note | Brief curatorial/contextual description. | No |
-| `accessionNumber`| Accession Number | Museum/library accession or catalog number. | No |
+The following table details the key fields currently implemented in the prototype, indicating how they are used for display, filtering, and search:
 
-**Note:** The main `Title` and `Description` for each artwork are handled by Dataverse's built-in **Citation Metadata** block, which is standard practice.
+| Field Name (from FGCU API) | Used As     | Displayed? | Filterable? | Searchable? |
+| :------------------------- | :---------- | :--------- | :---------- | :---------- |
+| `title` (citation block)   | Title       | Yes        | No          | **Yes** |
+| `artist` (art block)       | Creator     | Yes        | **Yes** | **Yes** |
+| `dateCreated` (art block)  | Year        | Yes        | **Yes** | No          |
+| `medium` (art block)       | Medium      | Yes        | **Yes** | No          |
+| `artStyle` (art block)     | Genre       | Yes        | **Yes** | No          |
+| `description` (citation) | Description | Yes        | No          | **Yes** |
+| `dimensions` (art block)   | Dimensions  | Yes        | No          | No          |
+| `accessionNumber` (art)    | Accession # | Yes        | No          | No          |
+| `keywords` (citation)      | Keywords    | Yes        | No          | No          |
+| `subjects` (citation)      | Subjects    | Yes        | No          | No          |
+| `publicationDate` (API)    | Pub. Date   | Yes        | No          | No          |
+| `collection` (art block)   | Collection  | Yes        | No          | No          |
+| `creditLine` (art block)   | Credit Line | Yes        | No          | No          |
+| `persistentId` (API)       | DOI/ID      | Yes        | No          | No          |
+
+**Note:** The main `Title` and `Description` are handled by Dataverse's built-in **Citation Metadata** block. Our initial design in the `.tsv` file closely matched the fields discovered in FGCU's live "art" metadata block, validating our approach.
+
+---
 
 ### Purpose
 
-These metadata fields provide structured, searchable details about each artwork. They allow the React frontend to dynamically query Dataverse for specific artists, mediums, or dates using the Dataverse REST APIs (/api/search, /api/datasets, /api/access).
+These metadata fields provide the structured, searchable details for the artworks displayed in the prototype. The React frontend dynamically queries the live FGCU Dataverse server using its REST APIs (`/api/search`, `/api/datasets`, `/api/access`) to fetch this data.
+
+---
 
 ### How It Connects to the System Architecture
 
-- Curators fill out these fields directly in the Dataverse web interface when uploading new artworks.
-- Once published, these records are stored in the Dataverse PostgreSQL database.
-- The React frontend retrieves and displays them using Dataverse’s APIs, powering the search, filtering, and artwork display in the public gallery.
+- FGCU Curators input this data directly into the live **FGCU Dataverse web interface**.
+- This data is stored in the **FGCU PostgreSQL database**.
+- Our **React frontend prototype** retrieves and displays this live data using FGCU Dataverse’s APIs, powering the search, filtering, and artwork display in the public gallery prototype.
 
 For a visual overview of the system’s communication flow, see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
+
+*(**Action Item:** The current API call in `GalleryView.tsx` needs to be corrected to use the `/api/search` endpoint and proper header authentication as documented in `docs/API_GUIDE.md` to fetch live data instead of relying on mock data.)*
