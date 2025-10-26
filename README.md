@@ -1,5 +1,5 @@
-# FGCU-Art-Gallery
-A class project intended for potential use by the FGCU Library to display artwork they have stored in their Dataverse data repository. Collaborators: Jack Ziemski, Charles Marsala, Edward Figueroa, Kyle Fillhart, and Vanessa Gutierrez.
+# FGCU Art Gallery
+A class project intended for potential use by the FGCU Library to display artwork they have stored in their Dataverse data repository. Collaborators: Edward Figueroa, Charles Marsala, Kyle Fillhart, and Vanessa Gutierrez.
 
 </br>
 
@@ -17,6 +17,7 @@ A class project intended for potential use by the FGCU Library to display artwor
 
 ## AI Tools Used
 - Figma Make (to create a prototype)
+- Gamma.app (to create PowerPoint presentations)
 
 </br>
 
