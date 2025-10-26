@@ -39,6 +39,8 @@ If no other method of configuration worked or you decide to procede with the nor
 - If you need to create, edit, or delete anything pertaining to PostgreSQL, you need to do so in the postgres user (ie: postgres@ip_address)
 - The PostgreSQL database and tables DO NOT and SHOULD NOT have to be created. The dvinstall.zip file (Dataverse Installation Guide linked above explains how to get this file) has script that will automatically create the database and the tables needed. You should, however, update the pg_hba.conf file (file path should be /var/lib/pgsql/16/data/pg_hba.conf) to include the name of the database and PostgreSQL user you would like the installer script to use.
 
+</br>
+
 ## Metadata Schema Usage in Prototype
 
 Our initial backend design included an ideal metadata schema for an art gallery, documented in [`docs/metadata/fgcuArtGallery.tsv`](./docs/metadata/fgcuArtGallery.tsv).
