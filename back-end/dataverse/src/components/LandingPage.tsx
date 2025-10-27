@@ -88,7 +88,7 @@ export function LandingPage({
               <Button
                 onClick={() => window.open("https://library.fgcu.edu/aboutus", "_blank")}
                 variant="outline"
-                className="gap-2"
+                className="border-[#0067B1] text-[#0067B1] hover:bg-[#0067B1] hover:text-white"
               >
                 Learn More
                 <ExternalLink className="w-4 h-4" />
@@ -106,7 +106,7 @@ export function LandingPage({
               <Button
                 onClick={() => window.open("https://library.fgcu.edu/askus", "_blank")}
                 variant="outline"
-                className="gap-2"
+                className="border-[#0067B1] text-[#0067B1] hover:bg-[#0067B1] hover:text-white"
               >
                 Ask Us
                 <ExternalLink className="w-4 h-4" />
@@ -124,7 +124,7 @@ export function LandingPage({
               <Button
                 onClick={() => window.open("https://library.fgcu.edu/calendar/location", "_blank")}
                 variant="outline"
-                className="gap-2"
+                className="border-[#0067B1] text-[#0067B1] hover:bg-[#0067B1] hover:text-white"
               >
                 View Location
                 <ExternalLink className="w-4 h-4" />
