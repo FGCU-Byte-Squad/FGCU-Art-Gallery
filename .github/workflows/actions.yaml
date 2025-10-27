@@ -23,4 +23,4 @@ jobs:
               with:
                   context: .
                   push: true
-                  tags: ghcr.io/FGCU-Byte-Squad/artgallery:latest
+                  tags: ghcr.io/fgcu-byte-squad/artgallery:latest
