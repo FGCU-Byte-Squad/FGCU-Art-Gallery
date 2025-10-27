@@ -1,0 +1,16 @@
+# FGCU Bower School of Music & the Arts – Custom Metadata Block (TSV)
+# Save as fgcuArtGallery.tsv and import via Native API or the Admin UI.
+# Notes:
+# - Artwork "Title" and "Description" should use Dataverse's built-in citation fields.
+# - Facets are enabled here (facetable=true), but you must also select these fields
+#   as facets in the target Dataverse collection settings.
+
+metadataBlock	name=fgcuArtGallery	displayName=FGCU Art Gallery
+
+datasetField	name=artistName	title=Artist	description=Primary creator/artist of the work.	watermark=e.g., Pablo Picasso	datasetFieldType=text	displayOrder=1	displayFormat=	advancedSearchable=true	allowControlledVocabulary=false	allowmultiples=true	facetable=true	displayoncreate=true	required=true	parent=
+datasetField	name=workYear	title=Year of Work	description=Year the artwork was completed (YYYY).	watermark=e.g., 1937	datasetFieldType=int	displayOrder=2	displayFormat=	advancedSearchable=true	allowControlledVocabulary=false	allowmultiples=false	facetable=true	displayoncreate=true	required=false	parent=
+datasetField	name=medium	title=Medium	description=Materials or form used to create the work.	watermark=e.g., Oil on canvas	datasetFieldType=text	displayOrder=3	displayFormat=	advancedSearchable=true	allowControlledVocabulary=false	allowmultiples=true	facetable=true	displayoncreate=true	required=false	parent=
+datasetField	name=dimensions	title=Dimensions	description=Physical size of the artwork.	watermark=e.g., 349 cm × 776 cm	datasetFieldType=text	displayOrder=4	displayFormat=	advancedSearchable=false	allowControlledVocabulary=false	allowmultiples=false	facetable=false	displayoncreate=false	required=false	parent=
+datasetField	name=copyrightNote	title=Copyright / Rights Note	description=Any rights notes beyond the selected license (e.g., courtesy lines, restrictions).	watermark=e.g., © FGCU, all rights reserved	datasetFieldType=text	displayOrder=5	displayFormat=	advancedSearchable=false	allowControlledVocabulary=false	allowmultiples=false	facetable=false	displayoncreate=false	required=false	parent=
+datasetField	name=curatorialNote	title=Curatorial Note	description=Brief curatorial/contextual description specific to the artwork.	watermark=	datasetFieldType=textbox	displayOrder=6	displayFormat=	advancedSearchable=true	allowControlledVocabulary=false	allowmultiples=false	facetable=false	displayoncreate=false	required=false	parent=
+datasetField	name=accessionNumber	title=Accession Number	description=Museum/library accession or catalog number, if applicable.	watermark=e.g., 2006.123	datasetFieldType=text	displayOrder=7	displayFormat=	advancedSearchable=true	allowControlledVocabulary=false	allowmultiples=false	facetable=false	displayoncreate=false	required=false	parent=
