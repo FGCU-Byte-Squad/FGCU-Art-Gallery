@@ -209,17 +209,59 @@ export function GalleryView({ initialSearchQuery, onNavigateToHome }: GalleryVie
 
   // Filter artworks based on search criteria
   const filteredArtworks = allArtworks.filter((artwork) => {
-    const matchesSearch = searchTerm === "" || 
-      artwork.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      artwork.creator?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      artwork.description?.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesArtist = selectedArtist === "all" || artwork.creator === selectedArtist;
-    const matchesGenre = selectedGenre === "all" || artwork.genre === selectedGenre;
-    const matchesYear = selectedYear === "all" || artwork.year === selectedYear;
-    const matchesMedium = selectedMedium === "all" || artwork.medium === selectedMedium;
+    // Normalize DOI using available fields
+    let doiCandidate =
+      artwork.datasetPersistentId ||
+      artwork.storageIdentifier ||
+      "";
+    doiCandidate = doiCandidate.replace(
+      "dataverse_files://",
+      "doi:",
+    );
 
-    return matchesSearch && matchesArtist && matchesGenre && matchesYear && matchesMedium;
+    const matchesSearch =
+      searchTerm === "" ||
+      artwork.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      artwork.creator
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      artwork.genre
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      artwork.year
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      artwork.medium
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      artwork.description
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      doiCandidate
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+    
+    const matchesArtist =
+      selectedArtist === "all" ||
+      artwork.creator === selectedArtist;
+    const matchesGenre =
+      selectedGenre === "all" ||
+      artwork.genre === selectedGenre;
+    const matchesYear =
+      selectedYear === "all" || artwork.year === selectedYear;
+    const matchesMedium =
+      selectedMedium === "all" ||
+      artwork.medium === selectedMedium;
+
+    return (
+      matchesSearch &&
+      matchesArtist &&
+      matchesGenre &&
+      matchesYear &&
+      matchesMedium
+    );
   });
 
   // Update displayed artworks when filters change
