@@ -53,7 +53,7 @@ export function ArtworkCard({ artwork, onClick }: ArtworkCardProps) {
             </div>
           </div>
         ) : isAudio ? (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#007749]/15 to-[#0067B1]/10 relative">
+          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#007749]/15 to-[#0067B1]/10 relative pb-0">
             <Music className="w-24 h-24 text-[#007749] mb-4 group-hover:scale-110 transition-transform" />
             <p className="text-base text-[#007749] font-medium">Audio Recording</p>
             <div className="absolute top-3 right-3">
