@@ -1,6 +1,12 @@
 import { Search } from "lucide-react";
 import { Input } from "./ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface SearchFiltersProps {
   searchTerm: string;
@@ -17,6 +23,7 @@ interface SearchFiltersProps {
   genres: string[];
   years: string[];
   mediums: string[];
+  viewMode?: "desktop" | "mobile";
 }
 
 export function SearchFilters({
@@ -34,25 +41,31 @@ export function SearchFilters({
   genres,
   years,
   mediums,
+  viewMode,
 }: SearchFiltersProps) {
   return (
-    <div className="space-y-6">
+    <div className="bg-white rounded-2xl shadow-lg p-6 space-y-6">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
         <Input
           type="text"
-          placeholder="Search artworks..."
+          placeholder="Search artworks by title, artist, or description..."
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-11 h-12 bg-input-background border-border"
+          className="pl-12 h-14 bg-[#F5F7FA] border-0 rounded-xl text-base placeholder:text-gray-400 focus-visible:ring-2 focus-visible:ring-[#0067B1]"
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className={`grid gap-4 ${viewMode === "mobile" ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"}`}>
         <div>
-          <label className="text-sm text-muted-foreground mb-2 block">Artist</label>
-          <Select value={selectedArtist} onValueChange={onArtistChange}>
-            <SelectTrigger className="bg-input-background">
+          <label className="text-sm font-medium text-gray-700 mb-2 block">
+            Artist
+          </label>
+          <Select
+            value={selectedArtist}
+            onValueChange={onArtistChange}
+          >
+            <SelectTrigger className="h-12 bg-[#F5F7FA] border-0 rounded-xl">
               <SelectValue placeholder="All Artists" />
             </SelectTrigger>
             <SelectContent>
@@ -67,9 +80,14 @@ export function SearchFilters({
         </div>
 
         <div>
-          <label className="text-sm text-muted-foreground mb-2 block">Genre</label>
-          <Select value={selectedGenre} onValueChange={onGenreChange}>
-            <SelectTrigger className="bg-input-background">
+          <label className="text-sm font-medium text-gray-700 mb-2 block">
+            Genre
+          </label>
+          <Select
+            value={selectedGenre}
+            onValueChange={onGenreChange}
+          >
+            <SelectTrigger className="h-12 bg-[#F5F7FA] border-0 rounded-xl">
               <SelectValue placeholder="All Genres" />
             </SelectTrigger>
             <SelectContent>
@@ -84,9 +102,14 @@ export function SearchFilters({
         </div>
 
         <div>
-          <label className="text-sm text-muted-foreground mb-2 block">Year</label>
-          <Select value={selectedYear} onValueChange={onYearChange}>
-            <SelectTrigger className="bg-input-background">
+          <label className="text-sm font-medium text-gray-700 mb-2 block">
+            Year
+          </label>
+          <Select
+            value={selectedYear}
+            onValueChange={onYearChange}
+          >
+            <SelectTrigger className="h-12 bg-[#F5F7FA] border-0 rounded-xl">
               <SelectValue placeholder="All Years" />
             </SelectTrigger>
             <SelectContent>
@@ -101,9 +124,14 @@ export function SearchFilters({
         </div>
 
         <div>
-          <label className="text-sm text-muted-foreground mb-2 block">Medium</label>
-          <Select value={selectedMedium} onValueChange={onMediumChange}>
-            <SelectTrigger className="bg-input-background">
+          <label className="text-sm font-medium text-gray-700 mb-2 block">
+            Medium
+          </label>
+          <Select
+            value={selectedMedium}
+            onValueChange={onMediumChange}
+          >
+            <SelectTrigger className="h-12 bg-[#F5F7FA] border-0 rounded-xl">
               <SelectValue placeholder="All Mediums" />
             </SelectTrigger>
             <SelectContent>
