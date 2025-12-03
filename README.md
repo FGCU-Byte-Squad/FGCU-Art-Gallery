@@ -23,6 +23,11 @@ A class project intended for potential use by the FGCU Library to display artwor
 
 ## Installation Guide
 
+You can download the packaged version of our project under "Releases" on the rightmost side of the page. The version to download is v0.0.3.
+
+
+#### -- Manual Installation of Project Dependencies --
+
 To install React, please refer to this website: [React](https://react.dev/learn/creating-a-react-app) </br>
 To install the Dataverse database, please refer to this website: [Dataverse](https://guides.dataverse.org/en/latest/installation/index.html) </br>
 To install Dataverse using Docker, please refer to this website: [Dataverse Docker Download](https://guides.dataverse.org/en/latest/container/running/index.html)
