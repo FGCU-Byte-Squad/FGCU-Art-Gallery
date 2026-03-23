@@ -7,11 +7,12 @@ on:
       - 'v*'  # optional, allows automatic release when you push a version tag (e.g., v1.0.0)
 
 permissions:
-      contents: write      # needed to create a release
+      contents: read      # needed to create a release
 
 jobs:
   build-and-release:
     permissions:
+      contents: write
       packages: write
       
     runs-on: ubuntu-latest
