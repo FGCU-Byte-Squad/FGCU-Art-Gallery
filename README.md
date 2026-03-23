@@ -92,3 +92,11 @@ These metadata fields provide the structured, searchable details for the artwork
 For a visual overview of the system’s communication flow, see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
 
 *(**Action Item:** The current API call in `GalleryView.tsx` needs to be corrected to use the `/api/search` endpoint and proper header authentication as documented in `docs/API_GUIDE.md` to fetch live data instead of relying on mock data.)*
+
+---
+
+## Reporting Issues
+
+If you find a bug or want to request a feature, please open an issue on GitHub:
+
+https://github.com/FGCU-Byte-Squad/FGCU-Art-Gallery/issues
