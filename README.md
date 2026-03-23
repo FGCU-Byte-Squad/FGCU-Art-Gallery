@@ -1,3 +1,5 @@
+#### Code: [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/FGCU-Byte-Squad/FGCU-Art-Gallery/badge)](https://securityscorecards.dev/viewer/?uri=github.com/FGCU-Byte-Squad/FGCU-Art-Gallery)
+
 # FGCU Art Gallery
 A class project intended for potential use by the FGCU Library to display artwork they have stored in their Dataverse data repository. Collaborators: Edward Figueroa, Charles Marsala, Kyle Fillhart, and Vanessa Gutierrez.
 
