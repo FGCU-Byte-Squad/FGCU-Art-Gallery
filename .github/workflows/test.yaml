@@ -1,0 +1,2 @@
+- name: Run tests
+  run: echo "Running placeholder tests"
