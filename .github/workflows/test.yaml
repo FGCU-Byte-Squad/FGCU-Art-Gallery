@@ -11,7 +11,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  tests:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
