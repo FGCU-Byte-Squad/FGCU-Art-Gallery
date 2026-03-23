@@ -6,6 +6,9 @@ on:
     tags:
       - 'v*'  # optional, allows automatic release when you push a version tag (e.g., v1.0.0)
 
+permissions:
+  contents: read
+
 jobs:
   build-and-release:
     permissions:
