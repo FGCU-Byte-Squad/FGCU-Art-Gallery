@@ -1,0 +1,1 @@
+The project includes contribution requirements in the CONTRIBUTING.md file. These outline expectations such as coding standards, testing practices, and pull request guidelines to ensure code quality and consistency.
