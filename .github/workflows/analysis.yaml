@@ -1,2 +1,5 @@
+permissions:
+  contents: read
+
 - name: Run static analysis
   run: echo "Running static code analysis (placeholder)"
