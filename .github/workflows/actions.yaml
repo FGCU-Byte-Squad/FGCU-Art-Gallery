@@ -29,29 +29,3 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/fgcu-byte-squad/artgallery:latest
-
-      # 🧩 Create ZIP package
-      - name: Create deployable ZIP
-        run: |
-          mkdir -p dist
-          zip -r dist/artgallery-deployable.zip . -x '*.git*' '*.github*' 'node_modules/*'
-
-      # 🧩 Create or update a GitHub Release
-      - name: Create GitHub Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: "Release ${{ github.ref_name }}"
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # 🧩 Upload ZIP to the Release
-      - name: Upload artifact to release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: dist/artgallery-deployable.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
