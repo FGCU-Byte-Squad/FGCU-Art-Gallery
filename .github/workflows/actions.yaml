@@ -8,10 +8,12 @@ on:
 
 permissions:
       contents: write      # needed to create a release
-      packages: write
 
 jobs:
   build-and-release:
+    permissions:
+      packages: write
+      
     runs-on: ubuntu-latest
 
     steps:
