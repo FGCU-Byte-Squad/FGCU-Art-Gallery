@@ -100,3 +100,8 @@ For a visual overview of the system’s communication flow, see [`docs/ARCHITECT
 If you find a bug or want to request a feature, please open an issue on GitHub:
 
 https://github.com/FGCU-Byte-Squad/FGCU-Art-Gallery/issues
+
+---
+
+## License
+This project is released into the public domain under The Unlicense.
